@@ -1,0 +1,1 @@
+This project is the backend part of the Shithead card game
