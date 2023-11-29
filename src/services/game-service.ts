@@ -47,6 +47,10 @@ export class GameService {
         });
     }
 
+    selectVisibleCards(): void {
+        // player
+    }
+
     putCards(): void {
         // check what is the meaning of the last card on the middle cards
         // take one card from the player and set it on the middle card
@@ -56,7 +60,7 @@ export class GameService {
     breakIn(): void {
         // take a cards from the player which is not his turn,
         // check if the player can breakIn with his cards,
-        // if so, the card will
+        // if so, the cards will burn the middle cards
     }
 
     pickAll(): void {
