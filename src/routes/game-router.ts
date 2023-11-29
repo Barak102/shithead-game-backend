@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express';
 import GameController from '../controllers/GameController';
+import { authMiddleware } from '../middlewares/Auth-middleware';
 
 const gameRouter = Router();
 const controller = new GameController();
@@ -7,6 +8,20 @@ const controller = new GameController();
 //   res.send('Hello, this is your API route!');
 // });
 
+// users:
+// get user
+// edit user
+// craete user
+// delete user
 
-gameRouter.get('/',controller.gameSample);
+// room:
+// crud...
+
+
+//gameRouter.use(authMiddleware)
+
+gameRouter.get('/pickCard',controller.getGameUsers);
+gameRouter.post('/',controller.createUser);
+
+// gameRouter.post("/")
 export default gameRouter;
