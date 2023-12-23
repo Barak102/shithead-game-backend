@@ -1,4 +1,4 @@
-import { GameState } from "../state-machine/game-state";
+import { GameState } from 'src/shithead-game/state-machine/game-state';
 
 export class GameStateMachineProvider {
   createNewGame(): GameState {
