@@ -18,6 +18,13 @@ COPY . .
 # Build the TypeScript code
 RUN npm run build
 
+# Copy the seed script into the container
+COPY seed-script.js ./
+
+# Run the seed script to populate the database
+RUN node seed-script.js
+
+
 ENV PORT=3000
 
 # Expose the port your app runs on

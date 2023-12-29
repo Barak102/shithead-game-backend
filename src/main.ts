@@ -5,13 +5,17 @@ import { ShitheadPlayer } from './shared/entities/shit-head-player';
 import { GameStateMachineProvider } from './providers/game-state-provider';
 import { CardVisibilityTypeEnum } from './shared/enums/card-visibility-type.enum';
 import { ShitheadCardBase } from './shared/models/shit-head-card-base';
+import * as dotenv from 'dotenv';
+
 
 async function bootstrap() {
+  dotenv.config();
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     abortOnError: false,
   });
   app.setGlobalPrefix('api');
-  await app.listen(3000);
+  
+  await app.listen(process.env.PORT);
 
   // const gameProvider = new GameStateMachineProvider();
   // const newGame = gameProvider.createNewGame();

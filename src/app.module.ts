@@ -6,17 +6,18 @@ import { RoomsModule } from './rooms/rooms.module';
 import { SharedModule } from './shared/shared.module';
 import { ShitheadGameModule } from './shithead-game/shithead-game.module';
 import { DatabaseModule } from './database/database.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     UsersModule,
     RoomsModule,
     SharedModule,
     ShitheadGameModule,
     DatabaseModule,
-    // MongooseModule.forRoot('mongodb://localhost:27017/your-database-name', {
-    // lazyConnection: true}),
-    // UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

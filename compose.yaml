@@ -8,62 +8,31 @@
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
 
-version: '1.4'
+version: '1.5'
 
 services:
   server:
+    container_name: shithead-backend-application
     build: .
     ports:
       - '3000:3000'
     depends_on:
       - mongodb
+      - redis
+    environment:
+      - MONGODB_CONNECTION_STRING=mongodb://shithead-mongodb:27017/shithead
 
-    # MongoDB Service
+
   mongodb:
+    container_name: shithead-mongodb
     image: mongo:latest
     ports:
-      - '27017:27017'
-    volumes:
-      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-# services:
-#   server:
-#     build:
-#       context: .
-#     environment:
-#       NODE_ENV: production
-#     ports:
-#       - 3000:3000
+      - 27017:27017
+    # volumes:
+    #   - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
 
-# The commented out section below is an example of how to define a PostgreSQL
-# database that your application can use. `depends_on` tells Docker Compose to
-# start the database before your application. The `db-data` volume persists the
-# database data between container restarts. The `db-password` secret is used
-# to set the database password. You must create `db/password.txt` and add
-# a password of your choosing to it before running `docker-compose up`.
-#     depends_on:
-#       db:
-#         condition: service_healthy
-#   db:
-#     image: postgres
-#     restart: always
-#     user: postgres
-#     secrets:
-#       - db-password
-#     volumes:
-#       - db-data:/var/lib/postgresql/data
-#     environment:
-#       - POSTGRES_DB=example
-#       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
-#     expose:
-#       - 5432
-#     healthcheck:
-#       test: [ "CMD", "pg_isready" ]
-#       interval: 10s
-#       timeout: 5s
-#       retries: 5
-# volumes:
-#   db-data:
-# secrets:
-#   db-password:
-#     file: db/password.txt
-
+  redis:
+    container_name: shithead-redis
+    image: redis:latest
+    ports:
+      - '6379:6379'

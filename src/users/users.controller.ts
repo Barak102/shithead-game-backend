@@ -15,7 +15,7 @@ import { User } from './user.schema';
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-
+  
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     console.log(createUserDto);
