@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { databaseProviders } from './database.providers';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MongooseDatabaseService } from './mongoose.database.service';
+import { DatabaseService } from './database.service';
 
 
 @Module({
@@ -15,8 +17,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     })
     ],
 //   imports: [MongooseModule.forRoot(process.env.MONGODB_CONNECTION_STRING)],
-  providers: [...databaseProviders],
+  providers: [...databaseProviders, DatabaseService],
   exports: [...databaseProviders],
 })
 export class DatabaseModule {}
-//
